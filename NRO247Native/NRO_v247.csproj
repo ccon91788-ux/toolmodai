@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>Soulmate</AssemblyName>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <RuntimeIdentifier>win-x86</RuntimeIdentifier>
+    
+    <!-- Language features -->
+    <LangVersion>Preview</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Nullable>disable</Nullable>
+    
+    <!-- Native AOT - Tối ưu tối đa -->
+    <PublishAot>true</PublishAot>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <IlcOptimizationPreference>Speed</IlcOptimizationPreference>
+    <IlcGenerateStackTraceData>false</IlcGenerateStackTraceData>
+    <IlcDisableReflection>true</IlcDisableReflection>
+    <IlcTrimMetadata>true</IlcTrimMetadata>
+    <EventSourceSupport>false</EventSourceSupport>
+    <UseSystemResourceKeys>true</UseSystemResourceKeys>
+    <IlcFoldIdenticalMethodBodies>true</IlcFoldIdenticalMethodBodies>
+    
+    <!-- Tắt các feature không cần -->
+    <EnableUnsafeBinaryFormatterSerialization>false</EnableUnsafeBinaryFormatterSerialization>
+    <EventSourceSupport>false</EventSourceSupport>
+    <HttpActivityPropagationSupport>false</HttpActivityPropagationSupport>
+    <MetadataUpdaterSupport>false</MetadataUpdaterSupport>
+    <UseNativeHttpHandler>true</UseNativeHttpHandler>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <!-- Debug symbols -->
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <!-- DPI Awareness manifest - tránh mất góc cửa sổ game khi DPI > 100% -->
+    <ApplicationManifest>NRO_v247\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <!-- CHỈ dùng SkiaSharp -->
+    <PackageReference Include="SkiaSharp" Version="2.88.8" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Win32" Version="2.88.8" />
+  </ItemGroup>
+
+
+</Project>

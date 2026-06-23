@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Đã tắt ép buộc HTTPS để hỗ trợ API C# trên Win 2012 / Win 7
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Trỏ tất cả traffic vào thư mục public của ZFoxShopPHP
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

@@ -1,0 +1,413 @@
+/* Minimalist, Cron.com inspired dark theme */
+:root {
+    --bg-color: #0E0E0E;
+    --text-color: #ffffff;
+    --text-muted: #a1a1aa;
+    --border-color: #27272a;
+    --primary-color: #ff5000;
+    --hover-bg: #18181b;
+    --input-bg: #151515;
+    --radius: 8px;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: var(--font-sans);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+a:hover { color: var(--text-muted); }
+
+/* Layout */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1000;
+}
+
+.navbar-brand {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    z-index: 1001;
+    padding: 8px;
+    outline: none;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-links a.btn {
+    background: var(--primary-color);
+    color: #ffffff;
+    padding: 10px 24px;
+    border-radius: 9999px; /* Pill shape like Cron */
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+.nav-links a.btn:hover {
+    background: #e04600;
+    color: #ffffff;
+}
+
+/* Typography styles */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.hero p {
+    font-size: clamp(1.1rem, 2vw, 1.25rem);
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+}
+
+.hero-news-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 80, 0, 0.3);
+    background: rgba(255, 80, 0, 0.02);
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 32px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(255, 80, 0, 0.15);
+    text-decoration: none;
+}
+.hero-news-badge:hover {
+    border-color: rgba(255, 80, 0, 0.6);
+    background: rgba(255, 80, 0, 0.05);
+    box-shadow: 0 4px 30px rgba(255, 80, 0, 0.25);
+    color: var(--text-color);
+}
+
+.hero .actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    padding: 0 24px;
+    border-radius: 9999px;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: #ffffff;
+}
+.btn-primary:hover {
+    background: #e04600;
+    color: #ffffff;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+.btn-secondary:hover {
+    background: var(--hover-bg);
+}
+
+/* Auth Cards */
+.auth-wrapper {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 380px;
+}
+
+.auth-card h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 0 0 8px 0;
+    text-align: center;
+}
+
+.auth-card p.subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+}
+
+.form-control {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background: var(--input-bg);
+    color: var(--text-color);
+    transition: border-color 0.2s;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.form-control:focus {
+    border-color: #52525b;
+}
+
+.error-msg {
+    background: #450a0a;
+    color: #fca5a5;
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    margin-bottom: 24px;
+    border: 1px solid #7f1d1d;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: 60px;
+}
+
+/* Image */
+.hero-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    margin-top: 60px;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--bg-color);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+        transform: translateY(-100%);
+        opacity: 0;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+        pointer-events: none;
+        z-index: 1000;
+    }
+    .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+    }
+    .nav-links a {
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: var(--text-color);
+    }
+    .nav-links a.btn {
+        font-size: 1.25rem;
+        padding: 16px 40px;
+        width: 80%;
+        max-width: 300px;
+        text-align: center;
+        border-radius: 9999px;
+    }
+    .hero {
+        padding: 40px 10px;
+    }
+    .hero .actions {
+        flex-direction: column;
+    }
+    .btn {
+        width: 100%;
+    }
+}
+
+/* Custom Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+.modal-box {
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 32px;
+    width: 90%;
+    max-width: 400px;
+    transform: translateY(20px) scale(0.95);
+    transition: all 0.2s ease;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+.modal-overlay.active .modal-box {
+    transform: translateY(0) scale(1);
+}
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+    color: var(--text-color);
+}
+.modal-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin: 0 0 24px 0;
+    line-height: 1.5;
+}
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+.modal-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    outline: none;
+}
+.modal-btn-cancel {
+    background: transparent;
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+.modal-btn-cancel:hover {
+    background: var(--hover-bg);
+}
+.modal-btn-confirm {
+    background: var(--primary-color);
+    color: #fff;
+}
+.modal-btn-confirm:hover {
+    background: #e04600;
+}
+
+/* Floating Zalo Button */
+.zalo-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #0068ff;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 104, 255, 0.3);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    transition: all 0.3s ease;
+}
+
+.zalo-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 104, 255, 0.5);
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .zalo-float {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 24px;
+    }
+}
