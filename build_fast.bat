@@ -35,6 +35,35 @@ if %ERRORLEVEL% neq 0 (
 
 echo.
 echo =======================================================
+echo [INFO] Building DemoUpdater (FAST - No AOT)...
+echo =======================================================
+:: Build DemoUpdater không dùng AOT để tối ưu tốc độ build khi test
+dotnet publish "%BASE_DIR%DemoUpdater\DemoUpdater.csproj" -c Release -o "%OUTPUT_DIR%" -p:PublishAot=false -p:DebugType=portable -p:DebugSymbols=true -v q -clp:ErrorsOnly -p:WarningLevel=0
+if %ERRORLEVEL% neq 0 (
+    echo [ERROR] Failed to build DemoUpdater!
+    pause
+    exit /b %ERRORLEVEL%
+)
+
+echo.
+echo =======================================================
+echo [INFO] Copying additional assets to output...
+echo =======================================================
+mkdir "%OUTPUT_DIR%\Data" 2>nul
+if exist "%BASE_DIR%DataDownloader\Data\JSON\ItemTemplates.json" copy /Y "%BASE_DIR%DataDownloader\Data\JSON\ItemTemplates.json" "%OUTPUT_DIR%\Data\"
+if exist "%BASE_DIR%DataDownloader\Data\JSON\Maps.json" copy /Y "%BASE_DIR%DataDownloader\Data\JSON\Maps.json" "%OUTPUT_DIR%\Data\"
+if exist "%BASE_DIR%DataDownloader\Data\JSON\NClasses.json" copy /Y "%BASE_DIR%DataDownloader\Data\JSON\NClasses.json" "%OUTPUT_DIR%\Data\"
+if exist "%BASE_DIR%NRO247Native\LoadAssets\assets.dat" copy /Y "%BASE_DIR%NRO247Native\LoadAssets\assets.dat" "%OUTPUT_DIR%\"
+
+echo.
+echo =======================================================
+echo [INFO] Build completed successfully!
+echo [INFO] Fast Executables (No AOT) are at: "%OUTPUT_DIR%"
+echo [INFO] Note: Use this for quick testing ONLY.
+echo =======================================================
+echo.
+pause
+echo =======================================================
 echo [INFO] Copying additional assets to output...
 echo =======================================================
 mkdir "%OUTPUT_DIR%\Data" 2>nul
