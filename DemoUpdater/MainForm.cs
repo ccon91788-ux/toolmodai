@@ -91,7 +91,7 @@ namespace DemoUpdater
                 
                 // Fetch JSON
                 lblStatus.Text = "Đang kết nối tới máy chủ...";
-                var jsonStr = await client.GetStringAsync("https://raw.githubusercontent.com/ccon91788-ux/toolmodai/main/update.json");                
+                var jsonStr = await client.GetStringAsync("https://raw.githubusercontent.com/ccon91788-ux/toolmodai/master/update.json");                
                 var data = JsonSerializer.Deserialize(jsonStr, DemoJsonContext.Default.DemoResponse);
                 
                 if (data == null || !data.Success || string.IsNullOrEmpty(data.Filename))
@@ -111,7 +111,14 @@ namespace DemoUpdater
                 progressBar.Value = 0;
 
                 string localZipPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, data.Filename);
-                string downloadUrl = data.Url ?? $"https://zefoxtools.io.vn/api/download/{data.Filename}";
+                // Chỉ lấy duy nhất đường link URL khai báo trên GitHub của ông
+string downloadUrl = data.Url;
+
+if (string.IsNullOrEmpty(downloadUrl))
+{
+    lblStatus.Text = "Lỗi: File cấu hình trên GitHub chưa có link tải!";
+    return;
+}
 
                 using (var response = await client.GetAsync(downloadUrl, HttpCompletionOption.ResponseHeadersRead))
                 {
