@@ -91,7 +91,7 @@ namespace DemoUpdater
                 
                 // Fetch JSON
                 lblStatus.Text = "Đang kết nối tới máy chủ...";
-                var jsonStr = await client.GetStringAsync("https://raw.githubusercontent.com/ccon91788-ux/toolnroviplo/main/update.json");                
+                var jsonStr = await client.GetStringAsync("https://raw.githubusercontent.com/ccon91788-ux/toolmodai/main/update.json");                
                 var data = JsonSerializer.Deserialize(jsonStr, DemoJsonContext.Default.DemoResponse);
                 
                 if (data == null || !data.Success || string.IsNullOrEmpty(data.Filename))
